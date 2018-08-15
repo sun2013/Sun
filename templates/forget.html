@@ -232,9 +232,10 @@
                     </div>
                     <div class="codeWrap">
                         <div class="col-sm-6 form-group">
-                            <input type="text" placeholder="请输入验证码" class="J_mailVal form-control">
+                            <input type="text" placeholder="请输入验证码" name="captcha_1" id="captcha_1" class="J_mailVal form-control">
                         </div>
-                        {{ forget_form.captcha }}
+                        <img src="{{ image_url}}" alt="captcha" class="captcha" style="height: 40px; margin-left: 15px">
+                        <input id="captcha_0" name="captcha_0" type="hidden" value="{{ hashkey }}">
                     </div>
                     <span class="clearfix"></span>
                     <div class="row">
@@ -346,6 +347,7 @@
     <script src="/static/js/jquery.min.js "></script>
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/bootstrap.min.js "></script>
+    <script src="/static/js/layer/layer.js"></script>
     <script src="/static/js/bootstrapValidator.min.js "></script>
     <script>
         $('#userName form').bootstrapValidator({
@@ -369,6 +371,22 @@
                 },
             }
         });
+        //刷新验证码
+        $('.captcha').on('click',function () {
+            var that = this;
+            $.ajax({
+                url: "{% url 'refresh_captcha' %}",
+                type:'get',
+                success(res){
+                    $(that).attr('src',res.captcha_image)
+                    $('#captcha_0').val(res.captcha_key)
+                },
+                 error:function (error) {
+                    layer.close(loadings);
+                    layer.msg('服务器异常');
+                }
+            })
+        })
         // Validate the form manually
         $('#step1').click(function () {
             $('#userName form').bootstrapValidator('validate');
@@ -378,6 +396,41 @@
                 findPasswordType(account)
             }
         });
+        $("#step3").click(function () {
+            var loadings = null;
+            $.ajax({
+                url: {% url 'forget' %},
+                type:'post',
+                data:{
+                    email: $('#account').val(),
+                    captcha_1:$('#captcha_1').val(),
+                    captcha_0:$('#captcha_0').val()
+                },
+                beforeSend:function(){
+                    loadings = layer.load();
+                },
+                success(res){
+                    layer.close(loadings);
+                    if(res.code == 200){
+                        layer.msg(res.msg);
+                        setTimeout(function () {
+                            window.location.href = '{% url "login" %}'
+                        },2000)
+                    }else{
+                        var msg = (res.msg.captcha&&res.msg.captcha[0]) || res.msg
+                        console.log(msg)
+                        layer.msg(msg, {
+                          offset: 'auto',
+                          anim: 6
+                        });
+                    }
+                },
+                 error:function (error) {
+                    layer.close(loadings);
+                    layer.msg('服务器异常');
+                }
+            })
+        })
 
         //验证账号类型
         function findPasswordType(account) {
@@ -409,6 +462,7 @@
             if (types == 1) {
                 $('.youxiang').show()
                 $('.yzMail').html('验证邮箱：' + account)
+                $('#email').val(account)
             }else{
                 $('.shouji').show()
                 $('.yzMobile').html('验证手机：' + account)

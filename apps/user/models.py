@@ -55,6 +55,7 @@ class EmailVerifyRecord(models.Model):
     # 未设置null = true blank = true 默认不可为空
     email = models.EmailField(max_length=50, verbose_name=u"邮箱")
     send_type = models.CharField(choices=SEND_CHOICES, max_length=10)
+    is_active = models.BooleanField(default=False, verbose_name="是否被使用过")
     # 这里的now得去掉(),不去掉会根据编译时间。而不是根据实例化时间。
     send_time = models.DateTimeField(default=datetime.now)
 

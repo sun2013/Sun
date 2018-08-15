@@ -62,13 +62,10 @@ def send_register_eamil(email, send_type="register"):
         send_status = msg.send()
         # 使用Django内置函数完成邮件发送。四个参数：主题，邮件内容，从哪里发，接受者list
         # send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
-
-        # 如果发送成功
-        return send_status
     elif send_type == "forget":
         email_title = "funny小站 找回密码链接"
         email_body = loader.render_to_string(
-            "email_forget.html",  # 需要渲染的html模板
+            "user/email_forget.html",  # 需要渲染的html模板
             {
                 "active_code": code  # 参数
             }
@@ -87,3 +84,5 @@ def send_register_eamil(email, send_type="register"):
         msg = EmailMessage(email_title, email_body, EMAIL_FROM, [email])
         msg.content_subtype = "html"
         send_status = msg.send()
+    # 如果发送成功
+    return send_status

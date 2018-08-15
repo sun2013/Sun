@@ -150,7 +150,7 @@
     </header>
     <!-- 登陆 -->
     <div class="title-line">
-        <span class="tit" style="font-size: 38px;">注 册</span>
+        <span class="tit" style="font-size: 38px;">重置密码</span>
     </div>
     <div class="login-main">
         <div class="login-bg">
@@ -160,90 +160,70 @@
             <form class="row form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" placeholder="请输入邮箱" class="form-control" id="email" name="email">
+                        <input type="password" class="form-control" placeholder="请输入新密码" id="password1" name="password">
                     </div>
                 </div>
+                <input type="hidden" id="email" value="{{ email }}">
                 <div class="form-group">
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="请输入昵称" id="nickname" name="nickname">
+                        <input type="password" class="form-control" placeholder="请输入确认密码" id="password2" name="confirmPassword">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-8">
-                        <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-8">
-                        <input type="password" placeholder="确认密码" class="form-control" id="confirmPassword" name="confirmPassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox col-sm-8">
-                        <label style="display: flex;flex-direction: row;align-items: center;margin: 0;color: #333">
-                            <input type="checkbox" name="programs" style="margin-top: 0">我已经认证阅读并同意本站的
-                            <a href="" style="color:#00a1d6">《使用协议》</a>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
+                    {% csrf_token %}
                 </div>
             </form>
             <div class="row">
                 <div class="form-group btn-group">
-                    <button id="validateBtn" class="btn btn-primary">注 册</button>
-                </div>
-                <div class="form-group btn-group  col-sm-offset-1">
-                    <a class="btn btn-default" href="{% url 'login' %}">已有账号，返回登陆</a>
+                    <button id="validateBtn" class="btn btn-primary">确 定</button>
                 </div>
             </div>
         </div>
     </div>
-    <footer id="footer" chromeappversion="3.0.3">
-        <div class="page-width">
-            <ul class="footer-c clearfix">
+    <footer id=" footer " chromeappversion="3.0.3 ">
+        <div class="page-width ">
+            <ul class="footer-c clearfix ">
                 <li>
                     <h6>dilidili</h6>
-                    <a class="card">关于我们</a>
-                    <a class="card">友情链接</a>
-                    <a class="card">周边</a>
-                    <a class="card">联系我们</a>
-                    <a class="card">加入我们</a>
-                    <a class="card">官方认证</a>
+                    <a class="card ">关于我们</a>
+                    <a class="card ">友情链接</a>
+                    <a class="card ">周边</a>
+                    <a class="card ">联系我们</a>
+                    <a class="card ">加入我们</a>
+                    <a class="card ">官方认证</a>
                 </li>
-                <li class="middle">
+                <li class="middle ">
                     <h6>传送门</h6>
-                    <a class="card">帮助中心</a>
-                    <a class="card">高级弹幕</a>
-                    <a class="card">活动专题页</a>
-                    <a class="card">侵权申诉</a>
+                    <a class="card ">帮助中心</a>
+                    <a class="card ">高级弹幕</a>
+                    <a class="card ">活动专题页</a>
+                    <a class="card ">侵权申诉</a>
                 </li>
-                <li class="footer-icon">
-                    <div class="cont">
-                        <a class="app">
+                <li class="footer-icon ">
+                    <div class="cont ">
+                        <a class="app ">
                             <i></i>
                             <em>手机端下载</em>
-                            <img src="/static/images/app-qrcode.png" alt="#">
+                            <img src="/static/images/app-qrcode.png " alt="# ">
                         </a>
-                        <a class="weibo">
+                        <a class="weibo ">
                             <i></i>
                             <em>新浪微博</em>
-                            <img src="/static/images/weibo-qrcode.png" alt="#">
+                            <img src="/static/images/weibo-qrcode.png " alt="# ">
                         </a>
-                        <a class="weixin">
+                        <a class="weixin ">
                             <i></i>
                             <em>官方微信</em>
-                            <img src="/static/images/weixin-arcode.gif" alt="#">
+                            <img src="/static/images/weixin-arcode.gif " alt="# ">
                         </a>
                     </div>
                 </li>
             </ul>
         </div>
     </footer>
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/layer/layer.js"></script>
-    <script src="/static/js/bootstrapValidator.min.js"></script>
+    <script src="/static/js/jquery.min.js "></script>
+    <script src="/static/js/bootstrap.min.js "></script>
+    <script src="/static/js/bootstrapValidator.min.js "></script>
     <script>
         $('form').bootstrapValidator({
             message: 'This value is not valid',
@@ -253,31 +233,6 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                email: {
-                    message: '请输入邮箱号码',
-                    validators: {
-                        notEmpty: {
-                            message: '邮箱号码不能为空'
-                        },
-                        emailAddress: {
-                            message: '邮箱地址格式有误'
-                        }
-                    }
-                },
-                nickname: {
-                    message: 'The username is not valid',
-                    validators: {
-                        notEmpty: {
-                            message: '用户昵称不能为空'
-                        },
-                        stringLength: {
-                            min: 2,
-                            max: 16,
-                            message: '用户名最大长度不能超过16位，最小不能少于2位'
-                        },
-
-                    }
-                },
                 password: {
                     validators: {
                         notEmpty: {
@@ -300,50 +255,27 @@
                         },
                     }
                 },
-                'programs': {
-                    validators: {
-                        notEmpty: {
-                            message: '必须同意本站使用协议许可才能注册'
-                        }
-                    }
-                },
             }
         });
         // Validate the form manually
         $('#validateBtn').click(function () {
-            var loadings = null;
             $('form').bootstrapValidator('validate');
             var flag = $('form').data('bootstrapValidator').isValid();
-            if (flag){
+            if(flag){
                 $.ajax({
-                    url: {% url 'register' %},
-                    type:'post',
+                    url: {% url 'modifypwd' %},
+                    type:'POST',
                     data:{
                         email:$('#email').val(),
-                        nick_name:$('#nickname').val(),
-                        password:$('#password').val(),
+                        password1:$('#password1').val(),
+                        password2:$('#password2').val()
                     },
-                    beforeSend:function(){
-                        loadings = layer.load();
-                    },
-                    success:function(res){
-                        layer.close(loadings);
+                    success(res){
                         if(res.code == 200){
-                            layer.msg(res.msg);
-                            setTimeout(function () {
-                                window.location.href = '{% url "login" %}'
-                            },2000)
-
+                            window.location.href = "{% url 'login' %}"
                         }else{
-                            layer.msg(res.msg, {
-                              offset: 'auto',
-                              anim: 6
-                            });
+
                         }
-                    },
-                    error:function (error) {
-                        layer.close(loadings);
-                        layer.msg('服务器异常');
                     }
                 })
             }

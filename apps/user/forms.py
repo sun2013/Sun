@@ -16,12 +16,17 @@ class LoginForm(forms.Form):
 
 class ForgetForm(forms.Form):
     email = forms.EmailField(required=True)
-    captcha = CaptchaField()
+    captcha = CaptchaField(error_messages={'invalid': '验证码错误'})
 
 
 class RegisterForm(forms.Form):
     email = forms.EmailField(required=True)
     nick_name = forms.CharField(required=True, max_length=24)
-    password = forms.CharField(required=True, min_length=5)
+    password = forms.CharField(required=True, min_length=6)
 
+
+class ResetForm(forms.Form):
+    email = forms.EmailField(required=True)
+    password1 = forms.CharField(required=True, min_length=6)
+    password2 = forms.CharField(required=True, min_length=6)
 

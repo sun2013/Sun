@@ -16,8 +16,7 @@ Including another URLconf
 from django.urls import path, re_path, include
 from django.views.static import serve
 from Sun.settings import MEDIA_ROOT
-from user import views as UserView
-from user.views import IndexView, UserArticleCategoryView, LoginView, RegisterView, ForgetView, ActiveUserView
+from user.views import IndexView, UserArticleCategoryView, LoginView, RegisterView, ForgetView, ActiveUserView, ResetUserView, ModifyPwdView, RefreshCaptchaView
 import xadmin
 
 urlpatterns = [
@@ -32,8 +31,12 @@ urlpatterns = [
     path('forget/', ForgetView.as_view(), name="forget"),
     # 验证码
     path("captcha/", include('captcha.urls')),
+    # 刷新验证码
+    path("getCaptcha/", RefreshCaptchaView.as_view(), name="refresh_captcha"),
     # 激活注册链接
     re_path('active/(?P<active_code>.*)', ActiveUserView.as_view(), name="user_active"),
+    re_path('reset/(?P<active_code>.*)', ResetUserView.as_view(), name="user_reset"),
+    path('modifypwd/', ModifyPwdView.as_view(), name='modifypwd'),
     path('selectArticleCategory/', UserArticleCategoryView.as_view(), name='user_article_category'),
 ]
 

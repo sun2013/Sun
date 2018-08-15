@@ -8,7 +8,10 @@ from django.contrib.auth.backends import ModelBackend
 from django.core import serializers
 from django.http import JsonResponse
 from .models import UserArticleCategory, UserProfile, EmailVerifyRecord
-from .forms import LoginForm, ForgetForm, RegisterForm
+from .forms import LoginForm, ForgetForm, RegisterForm, ResetForm
+from captcha.models import CaptchaStore
+from captcha.helpers import captcha_image_url
+
 # 并集运算
 from django.db.models import Q
 # 实现用户名邮箱均可登录
@@ -119,8 +122,66 @@ class RegisterView(View):
 
 class ForgetView(View):
     def get(self, request):
+        hashkey = CaptchaStore.generate_key()
+        image_url = captcha_image_url(hashkey)
         forget_form = ForgetForm()
-        return render(request, 'forget.html', {'forget_form': forget_form})
+        return render(request, 'forget.html',  locals())
+
+    def post(self, request):
+        forget_form = ForgetForm(request.POST)
+        if forget_form.is_valid():
+            email = request.POST.get("email", '')
+            users = UserProfile.objects.filter(email=email)
+            if users:
+                send_status = send_register_eamil(email, 'forget')
+                if send_status:
+                    return JsonResponse({'code': 200, 'msg': '邮件发送成功，请注意查收'})
+                else:
+                    return JsonResponse({'code': 202, 'msg': '邮件发送失败'})
+            else:
+                return JsonResponse({'code': 202, 'msg': '该邮箱不存在'})
+        else:
+            return JsonResponse({'msg': forget_form.errors, 'code': 202})
+
+
+class RefreshCaptchaView(View):
+    def get(self, request):
+        captcha_dict = dict()
+        captcha_dict['code'] = 200
+        captcha_dict['msg'] = 'success'
+        captcha_dict['captcha_key'] = CaptchaStore.generate_key()
+        captcha_dict['captcha_image'] = captcha_image_url(captcha_dict['captcha_key'])
+        return JsonResponse(captcha_dict)
+
+
+class ResetUserView(View):
+    def get(self, request, active_code):
+        all_records = EmailVerifyRecord.objects.filter(code=active_code)
+        if all_records:
+            for record in all_records:
+                email = record.email
+                return render(request, 'reset.html', {'email': email})
+        else:
+            return render(request, 'user/active_fail.html')
+
+
+class ModifyPwdView(View):
+
+    def post(self, request):
+        reset_form = ResetForm(request.POST)
+        if reset_form.is_valid():
+            password1 = request.POST.get('password1', '')
+            password2 = request.POST.get('password2', '')
+            email = request.POST.get('email', '')
+            if password1 != password2:
+                return JsonResponse({'msg': '密码不一致', 'code': 202})
+
+            user = UserProfile.objects.get(email=email)
+            user.password = make_password(password1)
+            user.save()
+            return JsonResponse({'msg': '修改成功', 'code': 200})
+        else:
+            return JsonResponse({'msg': reset_form.errors, 'code': 202})
 
 
 class UserArticleCategoryView(View):
