@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>尽情的感受吧~</title>
+    <link rel="shortcut icon" href="/static/images/fd039245d688d43fd4ffdc55791ed21b0ff43bc6.jpg">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrapValidator.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<style>
+    .checkbox i.form-control-feedback {
+        top: -2px;
+    }
+</style>
+
+<body>
+    <header id="header">
+        <div id="page_top">
+            <div class="bg-wrap">
+                <div class="bg"></div>
+            </div>
+            <div class="header-top">
+                <div class="page-width clearfix">
+                    <div class="header-top__nav">
+                        <ul>
+                            <li class="item item-home">
+                                <a href="{% url 'index' %}">主站</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">图库</a>
+                            </li>
+                            <li class="item">
+                                <a>动漫</a>
+                                <div class="game-center header-hover">
+                                    <div class="c clearfix">
+                                        <div class="fl">
+                                            <div class="imgbox">
+                                                <a>
+                                                    <img src="/static/images/game-center__img1.jpg" alt="#">
+                                                    <span>命运-冠位指定（Fate/GO）</span>
+                                                </a>
+                                            </div>
+                                            <div class="game-img">
+                                                <a>
+                                                    <img src="/static/images/game_img1.png" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/game_img2.png" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/game_img3.jpg" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="fr">
+                                            <div class="game-list">
+                                                <div class="title">
+                                                    <i></i>
+                                                    <a>热门动漫</a>
+                                                </div>
+                                                <div class="all">
+                                                    <a>仙剑奇侠传幻璃镜</a>
+                                                    <a>魔法禁书目录</a>
+                                                    <a>萌王EX</a>
+                                                    <a>妖精的衣橱</a>
+                                                    <a>神代梦华谭</a>
+                                                    <a>碧蓝航线</a>
+                                                    <a>光明大陆</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="gameImg"></div>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <a>电影</a>
+                                <div class="live-box header-hover">
+                                    <div class="live-box__c">
+                                        <div class="fl">
+                                            <div class="title">热门直播:</div>
+                                            <div class="cont">
+                                                <a>
+                                                    <img src="/static/images/live-box__img1.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>热爱电竞の三三</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img2.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>大角虫漫画</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img3.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>木本青</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img4.gif" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>一只小鹿噜噜噜</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img5.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>污叶妹屮</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img6.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>污污_永远的魔法师_</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="fl">
+                                            <div class="title">热门直播:</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <a>音乐</a>
+                            </li>
+                            <li class="item">
+                                <a>异世界</a>
+                                <!-- <div class="header-app header-hover">
+                          <i></i>
+                        </div> -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-c">
+            <div class="page-width">
+                <a href="#" id="header_logo"></a>
+                <p id="header_title"></p>
+                <div class="header-title">哔哩哔哩 (゜-゜)つロ 干杯~</div>
+            </div>
+        </div>
+    </header>
+    <!-- 登陆 -->
+    <div class="title-line">
+        <span class="tit" style="font-size: 38px;">注 册</span>
+    </div>
+    <div class="login-main">
+        <div class="login-bg">
+            <div class="login-img"></div>
+        </div>
+        <div class="login-wrapper">
+            <form class="row form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <input type="text" placeholder="请输入邮箱" class="form-control" id="email" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" placeholder="请输入昵称" id="nickname" name="nickname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <input type="password" placeholder="确认密码" class="form-control" id="confirmPassword" name="confirmPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-8">
+                        <label style="display: flex;flex-direction: row;align-items: center;margin: 0;color: #333">
+                            <input type="checkbox" name="programs" style="margin-top: 0">我已经认证阅读并同意本站的
+                            <a href="" style="color:#00a1d6">《使用协议》</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                </div>
+            </form>
+            <div class="row">
+                <div class="form-group btn-group">
+                    <button id="validateBtn" class="btn btn-primary">注 册</button>
+                </div>
+                <div class="form-group btn-group  col-sm-offset-1">
+                    <a class="btn btn-default" href="{% url 'login' %}">已有账号，返回登陆</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" chromeappversion="3.0.3">
+        <div class="page-width">
+            <ul class="footer-c clearfix">
+                <li>
+                    <h6>dilidili</h6>
+                    <a class="card">关于我们</a>
+                    <a class="card">友情链接</a>
+                    <a class="card">周边</a>
+                    <a class="card">联系我们</a>
+                    <a class="card">加入我们</a>
+                    <a class="card">官方认证</a>
+                </li>
+                <li class="middle">
+                    <h6>传送门</h6>
+                    <a class="card">帮助中心</a>
+                    <a class="card">高级弹幕</a>
+                    <a class="card">活动专题页</a>
+                    <a class="card">侵权申诉</a>
+                </li>
+                <li class="footer-icon">
+                    <div class="cont">
+                        <a class="app">
+                            <i></i>
+                            <em>手机端下载</em>
+                            <img src="/static/images/app-qrcode.png" alt="#">
+                        </a>
+                        <a class="weibo">
+                            <i></i>
+                            <em>新浪微博</em>
+                            <img src="/static/images/weibo-qrcode.png" alt="#">
+                        </a>
+                        <a class="weixin">
+                            <i></i>
+                            <em>官方微信</em>
+                            <img src="/static/images/weixin-arcode.gif" alt="#">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/layer/layer.js"></script>
+    <script src="/static/js/bootstrapValidator.min.js"></script>
+    <script>
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    message: '请输入邮箱号码',
+                    validators: {
+                        notEmpty: {
+                            message: '邮箱号码不能为空'
+                        },
+                        emailAddress: {
+                            message: '邮箱地址格式有误'
+                        }
+                    }
+                },
+                nickname: {
+                    message: 'The username is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: '用户昵称不能为空'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 16,
+                            message: '用户名最大长度不能超过16位，最小不能少于2位'
+                        },
+
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: '密码最小长度不能少于6位'
+                        },
+                    }
+                },
+                confirmPassword: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        identical: {
+                            field: 'password',
+                            message: '两次输入密码不一致'
+                        },
+                    }
+                },
+                'programs': {
+                    validators: {
+                        notEmpty: {
+                            message: '必须同意本站使用协议许可才能注册'
+                        }
+                    }
+                },
+            }
+        });
+        // Validate the form manually
+        $('#validateBtn').click(function () {
+            var loadings = null;
+            $('form').bootstrapValidator('validate');
+            var flag = $('form').data('bootstrapValidator').isValid();
+            if (flag){
+                $.ajax({
+                    url: {% url 'register' %},
+                    type:'post',
+                    data:{
+                        email:$('#email').val(),
+                        nick_name:$('#nickname').val(),
+                        password:$('#password').val(),
+                    },
+                    beforeSend:function(){
+                        loadings = layer.load();
+                    },
+                    success:function(res){
+                        layer.close(loadings);
+                        if(res.code == 200){
+                            layer.msg(res.msg);
+                            {#window.location.href = '{% url "index" %}'#}
+                        }else{
+                            layer.msg(res.msg, {
+                              offset: 'auto',
+                              anim: 6
+                            });
+                        }
+                    },
+                    error:function (error) {
+                        layer.close(loadings);
+                        layer.msg('服务器异常');
+                    }
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>

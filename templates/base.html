@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{% block title%}为了我们的友谊干杯 ~\(≧▽≦)/~~ 万岁！fruit{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/fd039245d688d43fd4ffdc55791ed21b0ff43bc6.jpg' %}">
+
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+
+    <header id="header">
+        <div id="page_top">
+            <div class="blur-bg" style="background-image: url('//i0.hdslb.com/bfs/archive/30d45ce269948eae8ed650e5ce03a2ca463a5d77.png');"></div>
+            <div class="bg-wrap">
+                <div class="bg"></div>
+            </div>
+            <div class="header-top">
+                <div class="page-width clearfix">
+                    <div class="header-top__nav">
+                        <ul>
+                            <li class="item item-home">
+                                <a href="{% url 'index' %}">主站</a>
+                            </li>
+                            <li class="item">
+                                <a href="#">图库</a>
+                            </li>
+                            <li class="item">
+                                <a>动漫</a>
+                                <div class="game-center header-hover">
+                                    <div class="c clearfix">
+                                        <div class="fl">
+                                            <div class="imgbox">
+                                                <a>
+                                                    <img src="/static/images/game-center__img1.jpg" alt="#">
+                                                    <span>命运-冠位指定（Fate/GO）</span>
+                                                </a>
+                                            </div>
+                                            <div class="game-img">
+                                                <a>
+                                                    <img src="/static/images/game_img1.png" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/game_img2.png" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/game_img3.jpg" alt="#">
+                                                    <span>刀剑乱舞</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="fr">
+                                            <div class="game-list">
+                                                <div class="title">
+                                                    <i></i>
+                                                    <a>热门动漫</a>
+                                                </div>
+                                                <div class="all">
+                                                    <a>仙剑奇侠传幻璃镜</a>
+                                                    <a>魔法禁书目录</a>
+                                                    <a>萌王EX</a>
+                                                    <a>妖精的衣橱</a>
+                                                    <a>神代梦华谭</a>
+                                                    <a>碧蓝航线</a>
+                                                    <a>光明大陆</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="gameImg"></div>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <a>电影</a>
+                                <div class="live-box header-hover">
+                                    <div class="live-box__c">
+                                        <div class="fl">
+                                            <div class="title">热门直播:</div>
+                                            <div class="cont">
+                                                <a>
+                                                    <img src="/static/images/live-box__img1.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>热爱电竞の三三</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img2.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>大角虫漫画</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img3.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>木本青</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img4.gif" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>一只小鹿噜噜噜</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img5.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>污叶妹屮</p>
+                                                </a>
+                                                <a>
+                                                    <img src="/static/images/live-box__img6.jpg" alt="#">
+                                                    <i>LIVE</i>
+                                                    <p>污污_永远的魔法师_</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="fl">
+                                            <div class="title">热门直播:</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <a>音乐</a>
+                            </li>
+                            <li class="item">
+                                <a>异世界</a>
+                                <!-- <div class="header-app header-hover">
+                  <i></i>
+                </div> -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header-top__user">
+                        {% if request.user.is_authenticated %}
+                            <div class="login-success">
+                                <div class="avatar">
+                                    <img src="{{ MEDIA_URL }}{{ request.user.image }}"></img>
+                                </div>
+                                <a href="{% url 'login' %}">消息</a>
+                                <a href="{% url 'register' %}">历史</a>
+                            </div>
+                        {% else %}
+                            <div class="login-box">
+                                <a href="{% url 'login' %}">登录</a>
+                                <span></span>
+                                <a href="{% url 'register' %}">注册</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-c">
+            <div class="page-width">
+                <a href="#" id="header_logo"></a>
+                <p id="header_title"></p>
+                <div id="search" class="clearfix">
+                    <div class="search-rank">排行榜</div>
+                    <div class="search-box">
+                        <input type="text" class="text" placeholder="Search here...">
+                        <a class="btn">
+                            <i></i>
+                        </a>
+                        <div class="search-history" style="display: none;">
+                            <div class="title">历史搜索</div>
+                            <div class="list">
+                                <a>努巴尼欢乐秀
+                                    <i></i>
+                                </a>
+                                <a>主播真会玩守望篇
+                                    <i></i>
+                                </a>
+                                <a>主播真会玩女神篇
+                                    <i></i>
+                                </a>
+                                <a>暴暴勺暴暴
+                                    <i></i>
+                                </a>
+                                <a>OverWatch
+                                    <i></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-title">哔哩哔哩 (゜-゜)つロ 干杯~</div>
+            </div>
+        </div>
+    </header>
+
+    <nav id="nav">
+        <div class="page-width clearfix">
+            <ul class="nav-list">
+                <li class="item item-home">
+                    <a class="link">首页</a>
+                </li>
+                <li class="item">
+                    <a class="link">
+                        <div class="num">
+                            <i>887</i>
+                        </div>
+                        图库
+                    </a>
+                    <ul class="nav-item__hover">
+                        <li>
+                            <a>
+                                <em>动漫
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>写真
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>风景
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>游戏
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a class="link">
+                        <div class="num">
+                            <i>23</i>
+                        </div>
+                        动漫
+                    </a>
+                    <ul class="nav-item__hover">
+                        <li>
+                            <a>
+                                <em>连载动画
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>完结动画
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>国产动画
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>资讯
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>官方延伸
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>新番时间表
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>番剧索引
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a class="link">
+                        <div class="num">
+                            <i>999+</i>
+                        </div>
+                        电影
+                    </a>
+                    <ul class="nav-item__hover">
+                        <li>
+                            <a>
+                                <em>国产电影
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>日韩电影
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <em>欧美电影
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a class="link">
+                        <div class="num">
+                            <i>152</i>
+                        </div>
+                        音乐
+                    </a>
+                    <ul class="nav-item__hover">
+                        <li>
+                            <a>
+                                <em>二次元
+                                    <i></i>
+                                </em>
+                            </a>
+                        </li>
+                </li>
+                </ul>
+                </li>
+                <li class="item item-square">
+                    <a class="link">异世界</a>
+                    <div class="nav-square__hover">
+                        <ul>
+                            <li>
+                                <a>
+                                    <i class="icon-activity"></i>活动中心</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="icon-game"></i>游戏中心</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="icon-news"></i>新闻中心</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="icon-friend"></i>画友</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="icon-tv"></i>芒果TV</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="item item-room">
+                    <a class="link">小黑屋</a>
+                </li>
+            </ul>
+            <div class="nav-gif">
+                <img src="/static/images/nav_img.gif" alt="求领养">
+            </div>
+        </div>
+    </nav>
+
+    {% block recommend%}
+    {% endblock %}
+
+    {% block content%}
+    {% endblock %}
+
+    <footer id="footer" chromeappversion="3.0.3">
+        <div class="page-width">
+            <ul class="footer-c clearfix">
+                <li>
+                    <h6>dilidili</h6>
+                    <a class="card">关于我们</a>
+                    <a class="card">友情链接</a>
+                    <a class="card">周边</a>
+                    <a class="card">联系我们</a>
+                    <a class="card">加入我们</a>
+                    <a class="card">官方认证</a>
+                </li>
+                <li class="middle">
+                    <h6>传送门</h6>
+                    <a class="card">帮助中心</a>
+                    <a class="card">高级弹幕</a>
+                    <a class="card">活动专题页</a>
+                    <a class="card">侵权申诉</a>
+                    <a class="card">分院帽计划</a>
+                    <a class="card">活动中心</a>
+                    <a class="card">用户反馈论坛</a>
+                    <a class="card">壁纸站</a>
+                    <a class="card">名人堂</a>
+                </li>
+                <li class="footer-icon">
+                    <div class="cont">
+                        <a class="app">
+                            <i></i>
+                            <em>手机端下载</em>
+                            <img src="/static/images/app-qrcode.png" alt="#">
+                        </a>
+                        <a class="weibo">
+                            <i></i>
+                            <em>新浪微博</em>
+                            <img src="/static/images/weibo-qrcode.png" alt="#">
+                        </a>
+                        <a class="weixin">
+                            <i></i>
+                            <em>官方微信</em>
+                            <img src="/static/images/weixin-arcode.gif" alt="#">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/script.js"></script>
+
+
+</body>
+
+</html>
