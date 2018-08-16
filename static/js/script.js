@@ -1,4 +1,7 @@
 $(function () {
+    //图片懒加载
+    $("img.lazy").lazyload({effect: "fadeIn"});
+
     // 游戏中心背景图片切换
     var $game_item = $('.game-center').find('.all').find('a');
     var $gameImg = $('#gameImg');

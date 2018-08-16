@@ -156,11 +156,15 @@ class RefreshCaptchaView(View):
 
 class ResetUserView(View):
     def get(self, request, active_code):
-        all_records = EmailVerifyRecord.objects.filter(code=active_code)
+        all_records = EmailVerifyRecord.objects.filter(code=active_code, send_type='forget').order_by('-send_time')
         if all_records:
             for record in all_records:
-                email = record.email
-                return render(request, 'reset.html', {'email': email})
+                if record.is_active == False:
+                    email = record.email
+                    record.save()
+                    return render(request, 'reset.html', {'email': email})
+                else:
+                    return render(request, 'user/active_fail.html')
         else:
             return render(request, 'user/active_fail.html')
 
@@ -177,8 +181,11 @@ class ModifyPwdView(View):
                 return JsonResponse({'msg': '密码不一致', 'code': 202})
 
             user = UserProfile.objects.get(email=email)
+            email_record = EmailVerifyRecord.objects.filter(email=email, send_type='forget').order_by('-send_time')[0]
             user.password = make_password(password1)
+            email_record.is_active = True
             user.save()
+            email_record.save()
             return JsonResponse({'msg': '修改成功', 'code': 200})
         else:
             return JsonResponse({'msg': reset_form.errors, 'code': 202})
