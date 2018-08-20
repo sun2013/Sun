@@ -55,11 +55,13 @@ $(function () {
     });
 
     function sideBar() {
-        if ($('#banner').offset().top <= $(this).scrollTop()) {
+       if($('#banner').offset()){
+            if ($('#banner').offset().top <= $(this).scrollTop()) {
             $sideBar.css({ top: 50 });
-        } else {
-            $sideBar.css({ top: 232 });
-        }
+            } else {
+                $sideBar.css({ top: 232 });
+            }
+       }
     };
     function initTopNav() {
         $search_history.hide();
