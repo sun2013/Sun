@@ -38,5 +38,6 @@ urlpatterns = [
     re_path('reset/(?P<active_code>.*)', ResetUserView.as_view(), name="user_reset"),
     path('modifypwd/', ModifyPwdView.as_view(), name='modifypwd'),
     path('selectArticleCategory/', UserArticleCategoryView.as_view(), name='user_article_category'),
+    path('gallery/', include('gallery.urls', namespace="gallery"))
 ]
 

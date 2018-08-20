@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'xadmin',
     'user',
     'captcha',
+    'gallery',
 ]
 
 MIDDLEWARE = [

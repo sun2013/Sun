@@ -1,0 +1,127 @@
+{% extends 'gallary_base.html' %}
+{% load staticfiles %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+{% block content%}
+{#    轮播图#}
+    <div id="banner" class="slider">
+        <div class="slider-img">
+            {% for banner in banners %}
+                <a href="#" slider-title="{{ banner.title }}">
+                    <img class="lazy" data-original="{{ MEDIA_URL }}{{ banner.image }}" alt="#">
+                </a>
+            {% endfor %}
+        </div>
+        <div class="slider-title">
+            <p></p>
+        </div>
+        <div class="slider-btn">
+            {% for banner in banners %}
+                {% ifequal forloop.counter 1 %}
+                     <span class="cur"></span>
+                {% else %}
+                     <span class=""></span>
+                {% endifequal %}
+
+            {% endfor %}
+        </div>
+    </div>
+{#    正文#}
+    <div id="nav">
+        <ul>
+            <li class="activated">推荐</li>
+            <li>最热</li>
+            <li>最新</li>
+        </ul>
+    </div>
+    <div id="content">
+    <div class="mainCont clearfix" id="live" js-move="true">
+        <ul class="pic-list__wrapper clearfix">
+            <li class="item">
+                <a class="img-link">
+                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
+                </a>
+                <div class="img-info">
+                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
+                    <div class="btm">
+                        <div class="user">
+                            <i></i>铃椛</div>
+                        <div class="online">
+                            <i></i>6732</div>
+                    </div>
+                </div>
+            </li>
+            <li class="item">
+                <a class="img-link">
+                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
+                </a>
+                <div class="img-info">
+                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
+                    <div class="btm">
+                        <div class="user">
+                            <i></i>铃椛</div>
+                        <div class="online">
+                            <i></i>6732</div>
+                    </div>
+                </div>
+            </li>
+            <li class="item">
+                <a class="img-link">
+                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
+                </a>
+                <div class="img-info">
+                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
+                    <div class="btm">
+                        <div class="user">
+                            <i></i>铃椛</div>
+                        <div class="online">
+                            <i></i>6732</div>
+                    </div>
+                </div>
+            </li>
+            <li class="item">
+                <a class="img-link">
+                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
+                </a>
+                <div class="img-info">
+                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
+                    <div class="btm">
+                        <div class="user">
+                            <i></i>铃椛</div>
+                        <div class="online">
+                            <i></i>6732</div>
+                    </div>
+                </div>
+            </li>
+            <li class="item">
+                <a class="img-link">
+                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
+                </a>
+                <div class="img-info">
+                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
+                    <div class="btm">
+                        <div class="user">
+                            <i></i>铃椛</div>
+                        <div class="online">
+                            <i></i>6732</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+{% block custom_js %}
+    <script type="text/javascript">
+        var tab_index = null;
+        {#设置tab切换#}
+        $("#nav ul li").on('click',function () {
+            if(tab_index == $(this).index()){
+                return false
+            }else{
+                tab_index = $(this).index();
+            }
+            $(this).addClass('activated').siblings('li').removeClass('activated')
+        })
+    </script>
+{% endblock %}

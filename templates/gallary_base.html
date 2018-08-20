@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title%}为了我们的友谊干杯 ~\(≧▽≦)/~~ 万岁！幻城{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/fd039245d688d43fd4ffdc55791ed21b0ff43bc6.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery_base.css' %}">
+    {% block custom_css %} {% endblock %}
+</head>
+<body>
+    {#   顶部  #}
+    <header>
+        <div id="wrapper">
+            <div id="left-nav">
+                <div class="nav-item">
+                    <a href="{% url 'index' %}">主站</a>
+                </div>
+                {% for category in categorys %}
+                    <div class="nav-item">
+                        {{ category.name }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="right-nav">
+                <div class="search-bar">
+                    <input type="text" placeholder="请输入关键字">
+                    <button>
+                        <i></i>
+                    </button>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <div class="avatar">
+                        <img src="{{ MEDIA_URL }}{{ request.user.image }}"></img>
+                    </div>
+                    <a class="nav-item" href="{% url 'login' %}">消息</a>
+                    <a class="nav-item" href="{% url 'register' %}">历史</a>
+                {% else %}
+                   <a class="nav-item" href="{% url 'login' %}">登录</a>
+                    <span></span>
+                    <a class="nav-item" href="{% url 'register' %}">注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer id="footer" chromeappversion="3.0.3">
+        <div class="page-width">
+            <ul class="footer-c clearfix">
+                <li>
+                    <h6>dilidili</h6>
+                    <a class="card">关于我们</a>
+                    <a class="card">友情链接</a>
+                    <a class="card">周边</a>
+                    <a class="card">联系我们</a>
+                    <a class="card">加入我们</a>
+                    <a class="card">官方认证</a>
+                </li>
+                <li class="middle">
+                    <h6>传送门</h6>
+                    <a class="card">帮助中心</a>
+                    <a class="card">高级弹幕</a>
+                    <a class="card">活动专题页</a>
+                    <a class="card">侵权申诉</a>
+                    <a class="card">分院帽计划</a>
+                    <a class="card">活动中心</a>
+                    <a class="card">用户反馈论坛</a>
+                    <a class="card">壁纸站</a>
+                    <a class="card">名人堂</a>
+                </li>
+                <li class="footer-icon">
+                    <div class="cont">
+                        <a class="app">
+                            <i></i>
+                            <em>手机端下载</em>
+                            <img src="/static/images/app-qrcode.png" alt="#">
+                        </a>
+                        <a class="weibo">
+                            <i></i>
+                            <em>新浪微博</em>
+                            <img src="/static/images/weibo-qrcode.png" alt="#">
+                        </a>
+                        <a class="weixin">
+                            <i></i>
+                            <em>官方微信</em>
+                            <img src="/static/images/weixin-arcode.gif" alt="#">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.lazyload.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% block custom_js %} {% endblock %}
+</html>

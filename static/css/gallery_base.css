@@ -1,0 +1,99 @@
+body {
+    background-color: #f2f3f5;
+}
+header{
+    height: 56px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px 0 rgba(36,33,46,0.06);
+    z-index: 1000;
+}
+#wrapper{
+    max-width: 1376px;
+    min-width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+#left-nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.nav-item:first-child{
+    padding: 0 16px 0 40px;
+}
+.nav-item{
+    height: 56px;
+    line-height: 56px;
+    color: #646c7a;
+    font-size: 14px;
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    padding: 0 16px;
+    transition: all ease 0.2s;
+    margin-left: 5px;
+}
+.nav-item:hover{
+    background-color:rgba(36,33,46,.4);
+    color:#fff
+}
+.nav-item:first-child:before{
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('/static/images/home-icon.png') center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+.search-bar{
+    width: 209px;
+    padding: 0 10px 0 15px;
+    border-radius: 20px;
+    background-color: #f4f5f7;
+    transition: transform cubic-bezier(0.22, 0.58, 0.12, 0.98) 0.4s;
+    transform-origin: 100% 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.search-bar input{
+    width: 148px;
+    height: 32px;
+    padding: 0 5px;
+    color: #333;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    animation-delay: 0.4s;
+}
+.search-bar button i {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: url(/static/images/page_icons.png) no-repeat -663px -728px;
+}
+.search-bar:hover button i {
+    background-position: -728px -728px;
+}
+.avatar{
+    margin:0 20px;
+}
+.avatar img{
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#right-nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
