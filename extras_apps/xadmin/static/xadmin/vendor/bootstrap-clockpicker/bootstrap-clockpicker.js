@@ -11,7 +11,7 @@
 		$body;
 
 	// Can I use inline svg ?
-	var svgNS = 'http://www.w3.org/2000/svg',
+	var svgNS = 'https://www.w3.org/2000/svg',
 		svgSupported = 'SVGAngle' in window && (function(){
 			var supported,
 				el = document.createElement('div');

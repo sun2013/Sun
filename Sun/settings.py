@@ -153,8 +153,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 587
 EMAIL_HOST_USER = '854214878@qq.com'# 你的 QQ 账号
 EMAIL_HOST_PASSWORD = 'gqfjcbicffsebfig'
 EMAIL_USE_TLS = True # 这里必须是 True，否则发送不成功

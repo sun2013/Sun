@@ -9,7 +9,7 @@
         <div class="slider-img">
             {% for banner in banners %}
                 <a href="#" slider-title="{{ banner.title }}">
-                    <img class="lazy" data-original="{{ MEDIA_URL }}{{ banner.image }}" alt="#">
+                    <img src="{{ MEDIA_URL }}{{ banner.image }}" alt="#">
                 </a>
             {% endfor %}
         </div>
@@ -37,77 +37,10 @@
     </div>
     <div id="content">
     <div class="mainCont clearfix" id="live" js-move="true">
-        <ul class="pic-list__wrapper clearfix">
-            <li class="item">
-                <a class="img-link">
-                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
-                </a>
-                <div class="img-info">
-                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
-                    <div class="btm">
-                        <div class="user">
-                            <i></i>铃椛</div>
-                        <div class="online">
-                            <i></i>6732</div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <a class="img-link">
-                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
-                </a>
-                <div class="img-info">
-                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
-                    <div class="btm">
-                        <div class="user">
-                            <i></i>铃椛</div>
-                        <div class="online">
-                            <i></i>6732</div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <a class="img-link">
-                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
-                </a>
-                <div class="img-info">
-                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
-                    <div class="btm">
-                        <div class="user">
-                            <i></i>铃椛</div>
-                        <div class="online">
-                            <i></i>6732</div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <a class="img-link">
-                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
-                </a>
-                <div class="img-info">
-                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
-                    <div class="btm">
-                        <div class="user">
-                            <i></i>铃椛</div>
-                        <div class="online">
-                            <i></i>6732</div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <a class="img-link">
-                    <img class="lazy" data-original="/static/images/live-box__img6.jpg" alt="#">
-                </a>
-                <div class="img-info">
-                    <a>【FGO】轮到两仪式来给你洗脑了~</a>
-                    <div class="btm">
-                        <div class="user">
-                            <i></i>铃椛</div>
-                        <div class="online">
-                            <i></i>6732</div>
-                    </div>
-                </div>
-            </li>
+        <ul id="list-wrapper" class="pic-list__wrapper clearfix">
+            <div style="height: 370px;display: flex;flex-direction: row;align-items: center;justify-content: center">
+                <img src="/static/images/loading.gif" alt="">
+            </div>
         </ul>
     </div>
 {% endblock %}
@@ -120,8 +53,59 @@
                 return false
             }else{
                 tab_index = $(this).index();
+                getList(tab_index)
             }
             $(this).addClass('activated').siblings('li').removeClass('activated')
         })
+
+    {#    获取list#}
+        getList(0)
+
+        $('#list-wrapper').delegate('li','click',function () {
+            var id = $(this).attr('data-id');
+            var host = location.host;
+            window.location.href = 'http://' + host + '/gallery/detail/' + id
+        })
+
+        function getList(type) {
+            $.ajax({
+                url:'{% url "gallery:list" %}',
+                type:'post',
+                data:{
+                    type:type
+                },
+                beforeSend:function () {
+                    var html =
+                        `<div style="height: 200px;display: flex;flex-direction: row;align-items: center;justify-content: center">
+                            <img src="/static/images/loading.gif" alt="">
+                        </div>`
+                    $('#list-wrapper').html(html)
+                },
+                success:function (res) {
+                    var html = '';
+                    res.data.forEach(function (el) {
+                        html +=
+                        `<li class="item" data-id="${el.pk}">
+                            <a class="img-link">
+                                <img class="lazy" data-original="{{ MEDIA_URL }}${el.fields.cover}" alt="#">
+                            </a>
+                            <div class="img-info">
+                                <a>${el.fields.title}</a>
+                                <div class="btm">
+                                    <div class="user">
+                                        <i></i>铃椛</div>
+                                    <div class="online">
+                                        <i></i>6732</div>
+                                </div>
+                            </div>
+                        </li>`
+                    })
+                    setTimeout(function () {
+                        $('#list-wrapper').html(html)
+                        $("img.lazy").lazyload({effect: "fadeIn"});
+                    },200)
+                }
+            })
+        }
     </script>
 {% endblock %}

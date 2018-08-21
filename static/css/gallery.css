@@ -78,8 +78,10 @@
     overflow: hidden;
     position: relative;
     width: 256px;
-    height: 292px;
+    height: 192px;
     border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .pic-list__wrapper .img-info {
     overflow: hidden;
@@ -88,7 +90,7 @@
     padding: 0 15px 15px;
 }
 .pic-list__wrapper .img-link img{
-    height: 292px;
+    height: 192px;
     display: block;
     margin: 0 auto;
 }
@@ -102,6 +104,7 @@
     background-color: #fff;
     border: 1px solid #e3e8ec;
     border-radius: 12px;
+    box-sizing: border-box;
 }
 .title-ctnr{
     margin: 0 0 14px;
@@ -155,13 +158,11 @@
     margin-left: 15px;
 }
 #container{
-    max-width: 1376px;
-    min-width: 900px;
+    width: 1160px;
+    margin: 24px auto 40px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    margin: 0 auto;
-    padding:40px 0;
+
 }
 .top hr{
     height: 1px;
@@ -175,4 +176,117 @@
 .list img{
     width: 100%;
     display: block;
+    margin-bottom: 60px;
+}
+#recommend{
+    position: fixed;
+    width: 276px;
+
+}
+#recommend h4{
+    font-size: 16px;
+    color: #222;
+    margin-bottom: 20px;
+}
+.recommend-fixed{
+    background-color: #fff;
+    border: 1px solid #e3e8ec;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.recommend-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.recommend-box li{
+    width: 107px;
+    margin-right: 20px;
+}
+.recommend-box li:nth-child(2n){
+    margin-right: 0;
+}
+.recommend-box li img.lazy{
+    width: 100%;
+    margin-bottom: 8px;
+}
+.recommend-box li .img-info{
+    line-height: 1.2;
+     display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.user-operate{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.left-oper{
+    width: 50%;
+    border-right: 1px solid #e0dede;
+    cursor: pointer;
+}
+.left-oper:hover .hands-icon{
+    background-position: 0em -1271px;
+}
+.hands-icon{
+    background-position: 0px -1147px;
+}
+.hands{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.hands span{
+    color: #ff8e29;
+    font-size: 14px;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.svg-icon {
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    background-image: url('/static/images/svg-sprite.a0ef1b0e170fb8bb38e9306c13874a12.svg');
+    background-repeat: no-repeat;
+    background-size: 31px 3441px;
+}
+.hands-text{
+    color: #666;
+    font-size: 13px;
+    padding-top: 16px;
+    text-align: center;
+}
+.right-oper{
+    width: 50%;
+}
+.user-save{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.user-save:hover .save-icon{
+    background-position: 0em -403px;
+}
+.save-icon{
+    background-position: 0 -31px;
+}
+
+.share-icon{
+
+}
+.user-share{
+
 }

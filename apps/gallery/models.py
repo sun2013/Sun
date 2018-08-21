@@ -24,6 +24,12 @@ class Gallery(models.Model):
     click_nums = models.IntegerField(default=0, verbose_name=u"点击人数")
     likes_nums = models.IntegerField(default=0, verbose_name=u"点赞人数")
     tags = models.CharField(max_length=200, verbose_name="关键字")
+    cover = models.ImageField(
+        upload_to="cover/",
+        default="",
+        max_length=100,
+        blank=True
+    )
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:

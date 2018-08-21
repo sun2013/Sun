@@ -147,7 +147,7 @@ class UserArticle(models.Model):
     title = models.CharField(verbose_name="标题", max_length=200)
     desc = models.TextField(verbose_name="日志简述")
     detail = models.TextField(verbose_name="文章详情")
-    image = models.ImageField(upload_to="article/%Y/%m", verbose_name=u"封面图", blank=True, max_length=100)
+    ls = models.ImageField(upload_to="article/%Y/%m", verbose_name=u"封面图", blank=True, max_length=100)
     user = models.ForeignKey(UserProfile, verbose_name="用户", on_delete=models.CASCADE, default="")
     category = models.ForeignKey(UserArticleCategory, verbose_name="日志类型", on_delete=models.CASCADE)
     click_nums = models.IntegerField(default=0, verbose_name="点赞人数")

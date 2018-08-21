@@ -1,38 +1,101 @@
 {% extends 'gallary_base.html' %}
 {% load staticfiles %}
 {% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/viewer.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
 {% endblock %}
 {% block content%}
     <div id="container">
         <div id="article">
             <div class="top">
-                <h1 class="title-ctnr">标题</h1>
+                <h1 class="title-ctnr">{{ gallery.title }}</h1>
                 <small class="title-desc">
                     <div class="tag-ctn">
-                        <a href="" class="tag-item">
-                            <div class="link-tag">御姐</div>
-                        </a>
+                        {% for tag in tags %}
+                            <a href="" class="tag-item">
+                                <div class="link-tag">{{ tag }}</div>
+                            </a>
+                        {% endfor %}
                     </div>
                     <div class="type-info">
-                        <span>原创&nbsp;&nbsp;| </span>
+                        <span>{{ gallery.category }}&nbsp;&nbsp;| </span>
                     </div>
-                    <span class="create-date">上传时间：2017-11-30 20:51:57</span>
+                    <span class="create-date">上传时间：{{ gallery.release_time }}</span>
                     <div class="visit-info">
-                        <span class="hits">浏览：2.8w</span>
-                        <span class="favourites">收藏：147</span>
-                        <span class="supports">支持：542</span>
+                        <span class="hits">浏览：{{ gallery.click_nums }}</span>
+                        <span class="supports">支持：{{ gallery.likes_nums }}</span>
                     </div>
                 </small>
                 <hr>
             </div>
-            <div class="list">
-                <img src="/static/images/live-box__img6.jpg" alt="">
+            <ul id="imgList" class="list">
+                {% for images in gallery_images %}
+                   <li>
+                    <img src="{{ MEDIA_URL }}{{ images.image }}" alt="">
+                   </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="recommend">
+            <div class="recommend-fixed">
+                <div class="user-operate">
+                    <div class="left-oper">
+                        <div class="hands">
+                            <i class="hands-icon svg-icon"></i>
+                            <span>200</span>
+                        </div>
+                        <div class="hands-text">点赞</div>
+                    </div>
+                    <div class="right-oper">
+                        <div class="user-save ">
+                            <i class="save-icon svg-icon"></i>
+                            <span>收藏</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommend-fixed">
+                <h4>相关推荐</h4>
+                <ul class="recommend-box">
+                    <li class="item" data-id="${el.pk}">
+                        <a class="img-link">
+                            <img class="lazy" data-original="/static/images/live-box__img2.jpg" alt="#">
+                        </a>
+                        <div class="img-info">
+                            <a>相关推荐相关推荐相关推荐</a>
+                        </div>
+                    </li>
+                    <li class="item" data-id="${el.pk}">
+                        <a class="img-link">
+                            <img class="lazy" data-original="/static/images/live-box__img2.jpg" alt="#">
+                        </a>
+                        <div class="img-info">
+                            <a>相关推荐相关推荐相关推荐相关推荐相关推荐相关推荐</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block custom_js %}
+    <script type="text/javascript" src="{% static 'js/viewer.min.js' %}"></script>
     <script type="text/javascript">
+    initFixed()
+    window.onresize = function () {
+        initFixed()
+    }
+    function initFixed() {
+        var X = $('#article').offset().top;
+        var Y = $('#article').offset().left;
+        $("#recommend").css({
+            left: Y + 864 + 30 + 'px',
+            top: X + 'px'
+        })
+    }
+    var viewer = new Viewer(document.getElementById('imgList'), {
+        url: 'data-original'
+    });
+    
     </script>
 {% endblock %}
